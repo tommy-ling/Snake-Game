@@ -1,5 +1,5 @@
 import {randomVerHor, drawSnake, drawTarget, snakeBody, numOfColumns, numOfRows} from './init.js'
-import {isTouching, wallCollide} from './move.js'
+import {isTouching, wallCollide, snakeCollide} from './move.js'
 
 randomVerHor()
 drawSnake()
@@ -25,7 +25,7 @@ export function snakeRun(xOrY) {
 }
 
 // ClickEvent below
-let intervalId
+export let intervalId
 window.addEventListener('keydown', event => {
   if(event.key === 'ArrowLeft') {
     if(lastInputDirection.x !== 0) {
@@ -37,6 +37,7 @@ window.addEventListener('keydown', event => {
       snakeRun('x')
       isTouching()
       wallCollide()
+      snakeCollide()
     }, 50)
   }
   if(event.key === 'ArrowRight') {
@@ -49,6 +50,7 @@ window.addEventListener('keydown', event => {
       snakeRun('x')
       isTouching()
       wallCollide()
+      snakeCollide()
     }, 50)
   }
   if(event.key === 'ArrowUp') {
@@ -61,6 +63,7 @@ window.addEventListener('keydown', event => {
       snakeRun('y')
       isTouching()
       wallCollide()
+      snakeCollide()
     }, 50)
   }
   if(event.key === 'ArrowDown') {
@@ -73,6 +76,7 @@ window.addEventListener('keydown', event => {
       snakeRun('y')
       isTouching()
       wallCollide()
+      snakeCollide()
     }, 50)
   }
   lastInputDirection = inputDirection
