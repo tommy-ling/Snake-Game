@@ -28,10 +28,25 @@
   justify-content: center;
 }
 
+.titleblock {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 div.snake {
   background-color: pink;
 }
 
 div.target {
   background-color: lightgreen;
+}
+
+.toggle {
+  display: none;
+}
+
+h4 {
+  color: red;
+  font-family: Arial, Helvetica, sans-serif;
 }

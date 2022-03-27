@@ -1,8 +1,8 @@
 // Initialize the random positions below
-const screen = document.querySelector('#body')
+export const screen = document.querySelector('#body')
 
-const numOfColumns = Math.floor(window.innerWidth/15)
-const numOfRows = Math.floor(screen.offsetHeight/15)
+export const numOfColumns = Math.floor(window.innerWidth/15)
+export const numOfRows = Math.floor(screen.offsetHeight/15)
 
 screen.style.gridTemplateColumns = `repeat(${numOfColumns}, 1fr)`
 screen.style.gridTemplateRows = `repeat(${numOfRows}, 1fr)`

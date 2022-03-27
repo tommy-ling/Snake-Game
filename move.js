@@ -1,8 +1,6 @@
-// CollideEvent below
-// export function isTouching(obj1, obj2) {
-// 	return (obj1.x === obj2.x && obj1.y === obj2.y)
-// }
-import {targetBody, snakeBody, drawTarget} from './init.js'
+// Eating Event below
+
+import {targetBody, snakeBody, drawTarget, screen, numOfColumns, numOfRows} from './init.js'
 import {snakeRun} from './index.js'
 
 const score = document.querySelectorAll('.score p')[1]
@@ -18,5 +16,15 @@ export function isTouching() {
     }
     snakeRun('x')
     score.innerHTML = ` ${scoreNum += 7}`
+  }
+}
+
+// Wall Collision
+export function wallCollide() {
+  if(snakeBody[0].x < 1 || snakeBody[0].x > numOfColumns ||
+    snakeBody[0].y < 1 || snakeBody[0].y > numOfRows) {
+    screen.style.backgroundColor = 'red'
+    document.querySelector('.titleblock').classList.add('toggle')
+    document.querySelector('h4').classList.remove('toggle')
   }
 }
