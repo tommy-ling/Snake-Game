@@ -1,9 +1,13 @@
-import {randomVerHor, drawSnake, drawTarget, snakeBody, numOfColumns, numOfRows} from './init.js'
+import {screen, drawSnake, draw, snakeBody, targetPositioning, numOfColumns, numOfRows} from './init.js'
 import {isTouching, wallCollide, snakeCollide} from './move.js'
 
-randomVerHor()
+export let targetBody = targetPositioning()
+export function modify(newValue) {
+  targetBody = newValue
+  return targetBody
+}
 drawSnake()
-drawTarget()
+draw('target', targetBody[0])
 
 const snake = document.querySelectorAll('#body div.snake')
 const target = document.querySelector('#body div.target')
@@ -21,7 +25,9 @@ export function snakeRun(xOrY) {
     snakeBody[0].y < 1 || snakeBody[0].y > numOfRows) {
     return
   }
+  screen.innerHTML = ''
   drawSnake()
+  draw('target', targetBody[0])
 }
 
 // ClickEvent below

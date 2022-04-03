@@ -13,17 +13,31 @@ function randomPos() {
   return { x, y } 
 }
 
-const { x, y } = randomPos()
+function snakePositioning() {
+  const { x, y } = randomPos()
+  let snakeBody = [
+    {x: 0, y: 0},
+    {x: 0, y: 0},
+    {x: 0, y: 0}
+  ]
+  snakeBody = [
+    {x: x, y},
+    {x: x + 1, y},
+    {x: x + 2, y}
+  ]
+  return snakeBody
+}
 
-export let snakeBody = [
-  {x: x, y},
-  {x: x + 1, y},
-  {x: x + 2, y}
-]
-
-export let targetBody = [
-  {x: randomPos().x, y: randomPos().y}
-]
+export function targetPositioning() {
+  const { x, y } = randomPos()
+  let targetBody = [
+    {x: 0, y: 0}
+  ]
+  targetBody = [
+    {x, y}
+  ]
+  return targetBody
+}
 
 export function draw(object, el) {
   const body = document.createElement('div')
@@ -33,33 +47,10 @@ export function draw(object, el) {
   screen.appendChild(body)
 }
 
-export function randomVerHor() {
-  const randomizer = Math.random()
-  for(let i = 1; i < snakeBody.length; i ++) {
-    if(randomizer > 0.5) {
-      snakeBody[i].x = x
-      snakeBody[i].y = y + i
-    } else {
-      snakeBody[i].y = y
-      snakeBody[i].x = x + i
-    }
-  }  
-}
+export let snakeBody = snakePositioning()
 
 export function drawSnake() {
-  const classImage = document.querySelectorAll('#body div')
-  classImage.forEach(el => {
-    el.classList.remove('snake')
-  })
   snakeBody.forEach(el => {
     draw('snake', el)
   })
-}
-
-draw('target', targetBody[0])
-export function drawTarget() {
-  document.querySelector('#body div.target').classList.remove('target')
-  targetBody[0].x = randomPos().x
-  targetBody[0].y = randomPos().y
-  draw('target', targetBody[0])
 }
